@@ -1,7 +1,143 @@
 @use '../../style' as s;
 
-main {
-	background: s.color(dark);
-	color: s.color(light);
-	padding: s.space(4);
+@mixin click {
+
+	transition: opacity 0.7s, color 0.7s;
+
+	&:hover {
+		opacity: 0.7;
+	}
+
+	&:active {
+		opacity: 0.5;
+		color: black;
+	}
+}
+
+.page {
+	max-width: 600px;
+	width: 100%;
+	margin: 0 auto;
+	background-color: #fff;
+
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
 } 
+
+.header {
+	position: absolute;
+	top: 0;
+
+	max-width: 600px;
+	width: 100%;
+	left: calc(50% - 300px );
+	z-index: 1;
+}
+
+.header__top {
+	display: flex;
+	justify-content: space-between;
+	padding: 25px 0;
+	align-items: center;
+	gap: 24px;
+
+	border-bottom: 1px solid s.color(border);
+}
+
+.header__list {
+	display: flex;
+	gap: 24px;
+}
+
+.header__link {
+	text-decoration: none;
+
+	@include click;
+}
+
+.header__button {
+	height: 24px;
+	width: 24px;
+
+	background-repeat: none;
+	background-size: cover;
+
+	@include click;
+}
+
+.header__button--open {
+	background-image: url('/svg/menu-open.svg');
+}
+
+.header__button--close {
+	background-image: url('/svg/menu-close.svg');
+}
+
+.header__list--vertical {
+
+	padding: 25px 0;
+
+	flex-direction: column;
+	gap: 12px;
+
+	border-bottom: 1px solid s.color(border);
+	background-color: #fff;
+}
+
+.header__wrapper {
+	overflow: hidden;
+	transition: height 0.7s;
+	height: 0px;
+}
+
+.slider {
+	width: 100%;
+	position: relative;
+
+	&__content {
+		display: flex;
+		overflow: hidden;
+		border-radius: 12px;
+	}
+}
+
+.slider__image {
+	width: 100%;
+	height: 400px;
+}
+
+.slider__button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 32px;
+	height: 32px;
+
+	background-repeat: none;
+	background-size: cover;
+	
+	transition: opacity 0.7s;
+
+	&:hover {
+		opacity: 0.7
+	}
+
+	&:active {
+		opacity: 0.5
+	}
+
+	position: absolute;
+	top: calc( 50% - 32px / 2);
+}
+
+.slider__button--left {
+	background-image: url('/svg/arrow-left.svg');
+	left: 24px;
+}
+
+.slider__button--right {
+	background-image: url('/svg/arrow-right.svg');
+	right: 24px;
+}
