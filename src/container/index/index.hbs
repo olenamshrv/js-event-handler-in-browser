@@ -5,87 +5,125 @@
 
 <page class='page'>
 
-  <header class='header'>
-    <div class='header__top'>
-      <div class='header__list'>
-        <a class='header__link' href='#'>
-          Home
-        </a>
-        <a class='header__link' href='#'>
-          About
-        </a>
-        <a class='header__link' href='#'>
-          Contact
-        </a>
-      </div>
+  <form class='form' id='form'>
+    <img
+      height='160px'
+      width='100%'
+      src='https://picsum.photos/1200/1200'
+      alt='Form image'
+      class='form__image'
+    />
 
-      <button
-        class='header__button header__button--open'
-      ></button>
+    <h1 class='form__title'>Реєстрація користувача</h1>
+
+    <div class='form__group'>
+      <label for='username' class='form__label'>Ім'я
+        користувача</label>
+      <input
+        type='text'
+        class='form__input'
+        id='username'
+        name='username'
+        required
+      />
+      <span
+        class='form__button--save'
+        operator='-'
+        value='10'
+      >Save</span>
     </div>
 
-    <div class='header__wrapper'>
-      <div class='header__bottom'>
-        <div class='header__list header__list--vertical'>
-          <a class='header__link' href='#'>
-            Service
-          </a>
-          <a class='header__link' href='#'>
-            Privacy
-          </a>
-          <a class='header__link' href='#'>
-            Clients
-          </a>
-        </div>
-      </div>
+    <div class='form__group'>
+      <label for='email' class='form__label'>Email</label>
+      <input
+        type='email'
+        class='form__input'
+        id='email'
+        name='email'
+        required
+      />
     </div>
-  </header>
 
-  <main class='slider'>
-    {{! <div class='slider__content'>
-      <img
-        class='slider__image'
-        src='https://picsum.photos/600/400'
-        alt='Picture'
+    <div class='form__group'>
+      <label for='age' class='form__label'>Age</label>
+      <input
+        type='number'
+        class='form__input'
+        id='age'
+        name='age'
+        required
       />
-      <img
-        class='slider__image'
-        src='https://picsum.photos/600/400'
-        alt='Picture'
-      />
-      <img
-        class='slider__image'
-        src='https://picsum.photos/600/400'
-        alt='Picture'
-      />
-    </div> }}
+      <span
+        class='form__button--add'
+        operator='+'
+        value='10'
+      >+10</span>
+      <span
+        class='form__button--add'
+        operator='-'
+        value='10'
+      >-10</span>
+    </div>
 
-    <div class='slider__content'>
-      <img
-        class='slider__image'
-        src='/img/1.jpg'
-        alt='Picture'
-      />
-      <img
-        class='slider__image'
-        src='/img/2.jpg'
-        alt='Picture'
-      />
-      <img
-        class='slider__image'
-        src='/img/3.jpg'
-        alt='Picture'
+    <div class='form__group'>
+      <label for='role' class='form__label'>Оберіть роль</label>
+      {{! <select
+        class='form__select'
+        id='role'
+        name='role'
+        required
+      >
+        <option
+          value=''
+          disabled=''
+          selected=''
+        >Роль</option>
+        <option value='user'>Користувач</option>
+        <option value='admin'>Адмінистратор</option>
+      </select> }}
+
+      <select
+        multiple
+        class='form__select'
+        id='role'
+        name='role'
+        required
+      >
+        <option
+          value=''
+          disabled=''
+          selected=''
+        >Роль</option>
+        <option value='user'>Користувач</option>
+        <option value='admin'>Адмінистратор</option>
+      </select>
+
+    </div>
+
+    <div class='form__group form__group--checkbox'>
+      <label for='agree' class='form__label'>Відправляти
+        повідомлення на email</label>
+      <input
+        type='checkbox'
+        class='form__input'
+        id='agree'
+        name='agree'
+        required
       />
     </div>
 
     <button
-      class='slider__button slider__button--left'
-    ></button>
-    <button
-      class='slider__button slider__button--right'
-    ></button>
+      class='form__button'
+      {{! type='button' }}
+      type='submit'
+    ><span>Зареєструватися</span></button>
 
-  </main>
+    <div id='outer'>
+      <div id='inner'>
+        Click me!
+      </div>
+    </div>
+  </form>
 
 </page>
 

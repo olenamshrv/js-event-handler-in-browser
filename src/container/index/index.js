@@ -1,137 +1,341 @@
-class Slider {
-  static #content = null
-  static #left = null
-  static #right = null
+document.querySelector('.form__button').onclick = () => {
+  const form = document.getElementById('form')
 
-  static #count = 1
-  static #max = null
+  // if (form.reportValidity()) {
+  //   form.onsubmit()
+  // } else {
+  //   form.reset()
+  // }
 
-  static init() {
-    this.#content = document.querySelector(
-      '.slider__content',
-    )
+  //========
 
-    this.#left = document.querySelector(
-      '.slider__button--left',
-    )
-    this.#right = document.querySelector(
-      '.slider__button--right',
-    )
+  // console.log(form.checkValidity())
 
-    this.#max = this.#content.childElementCount
+  // const username = document.getElementById('username')
 
-    console.log(
-      this.#content,
-      this.#left,
-      this.#right,
-      this.#count,
-      this.#max,
-    )
+  // console.log(username.checkValidity())
 
-    this.#left.onclick = () => this.#slide('left')
-    this.#right.onclick = () => this.#slide('right')
-  }
+  // if (username.checkValidity()) {
+  //   form.submit()
+  // }
 
-  static #slide = (side) => {
-    const offsetWidth = this.#content.offsetWidth
-    const scrollLeft = this.#content.scrollLeft
-    const scrollWidth = this.#content.scrollWidth
+  //========
 
-    let scroll = 0
+  // const username = document.getElementById('username')
 
-    if (side === 'right') {
-      if (this.#count < this.#max) {
-        this.#count += 1
-      } else if (
-        this.#count === this.#max ||
-        scrollLeft === scrollWidth - offsetWidth
-      ) {
-        this.#count = 1
-      }
+  // console.log(username.reportValidity())
+
+  // if (username.reportValidity()) {
+  //   form.submit()
+  // }
+
+  // //========
+
+  // const email = document.getElementById('email')
+
+  // console.log(email.reportValidity())
+
+  // if (email.reportValidity()) {
+  //   form.submit()
+  // }
+
+  //========
+
+  const email = document.getElementById('email')
+
+  // console.log(email.checkValidity())
+
+  if (!email.checkValidity()) {
+    if (email.value.length === 0) {
+      email.setCustomValidity(
+        'Помилка. Введіть корректне значення.',
+      )
     }
 
-    if (side === 'left') {
-      if (this.#count > 1) {
-        this.#count -= 1
-      } else if (this.#count === 1 || scrollLeft === 0) {
-        this.#count = this.#max
-      }
-    }
+    // if (email.value.length > 10) {
+    //   email.setCustomValidity('Помилка. Введіть менше 10.')
+    // }
 
-    scroll = offsetWidth * (this.#count - 1)
-
-    this.#content.scrollTo({
-      top: 0,
-      left: scroll,
-      behavior: 'smooth',
-    })
-
-    // console.log('scroll', scroll)
-    // console.log('count', this.#count)
+    email.reportValidity()
   }
 }
 
-Slider.init()
+// document.querySelector('.form__button--add').onclick =
+//   () => {
+//     const age = document.getElementById('age')
 
-class Header {
-  static #height = null
-  static #wrapper = null
-  static #button = null
+//     age.stepUp(10)
+//   }
 
-  static init() {
-    this.#wrapper = document.querySelector(
-      '.header__wrapper',
-    )
+document
+  .querySelectorAll('.form__button--add')
+  .forEach((element) => {
+    // console.log(element)
 
-    this.#height = document.querySelector(
-      '.header__bottom',
-    ).offsetHeight
+    element.onclick = () => {
+      if (element.getAttribute('operator') === '+') {
+        return age.stepUp(
+          Number(element.getAttribute('value')),
+        )
+      }
 
-    this.#button = document.querySelector('.header__button')
-
-    console.log(this.#wrapper, this.#height, this.#button)
-
-    this.#button.onclick = this.#toggle
-  }
-
-  static #toggle = () => {
-    this.#button.classList.toggle('header__button--open')
-    this.#button.classList.toggle('header__button--close')
-
-    if (
-      this.#button.classList.contains(
-        'header__button--close',
-      )
-    ) {
-      this.#wrapper.style.setProperty(
-        'height',
-        this.#height,
-      )
-    } else {
-      this.#wrapper.style.setProperty('height', 0)
+      if (element.getAttribute('operator') === '-') {
+        return age.stepDown(
+          Number(element.getAttribute('value')),
+        )
+      }
     }
+  })
+
+document.querySelector('.form__button--save').onclick =
+  () => {
+    const value = document.getElementById('username').value
+
+    if (value.length === 0) alert('Даних немає')
+
+    navigator.clipboard
+      .writeText(value)
+      .then(() => alert('Дані скопійовано'))
   }
 
-  //   static #isOpen = false
+// document
+//   .querySelector('.form__button')
+//   .addEventListener('click', () => {
+//     alert('click')
+//   })
 
-  //   static #toggle = () => {
-  //     if (this.#isOpen) {
-  //       this.#button.classList.replace(
-  //         'header__button--close',
-  //         'header__button--open',
-  //       )
+// document
+//   .querySelector('.form__button')
+//   .addEventListener('click', () => {
+//     alert('click 2')
+//   })
 
-  //       this.#wrapper.style.height = 0
-  //     } else {
-  //       this.#button.classList.replace(
-  //         'header__button--open',
-  //         'header__button--close',
-  //       )
-  //       this.#wrapper.style.height = `${this.#height}px`
-  //     }
+// //=====
 
-  //     this.#isOpen = !this.#isOpen
-  //   }
-}
+// const listener = () => {
+//   alert('click')
+// }
 
-Header.init()
+// document
+//   .querySelector('.form__button')
+//   .addEventListener('click', listener)
+
+// document
+//   .querySelector('.form__button')
+//   .removeEventListener('click', listener)
+
+//=====
+
+// const listener = () => {
+//   alert('click')
+// }
+
+// const listener2 = () => {
+//   alert('click 2')
+// }
+
+// document
+//   .queryselector('.form__button')
+//   .addeventlistener('click', listener)
+
+// document
+//   .queryselector('.form__button')
+//   .addeventlistener('click', listener2)
+
+// document
+//   .queryselector('.form__button')
+//   .removeeventlistener('click', listener)
+
+// //==================
+
+// const outer = document.getelementbyid('outer')
+// const inner = document.getelementbyid('inner')
+
+// outer.addeventlistener(
+//   'click',
+//   () => alert('capture phase (фаза захоплення) outer'),
+//   {
+//     capture: true,
+//   },
+// )
+
+// inner.addeventlistener(
+//   'click',
+//   () => alert('capture phase (фаза захоплення) inner'),
+//   {
+//     capture: true,
+//   },
+// )
+
+// outer.addeventlistener(
+//   'click',
+//   () => alert('bubble phase (фаза спливання) outer'),
+//   {
+//     capture: false,
+//   },
+// )
+
+// inner.addeventlistener(
+//   'click',
+//   () => alert('bubble phase (фаза спливання) inner'),
+//   {
+//     capture: false,
+//     once: true,
+//   },
+// )
+
+//============================================
+
+// document
+//   .querySelector('.form__button')
+//   .addEventListener('click', (e) => {
+//     console.log(e)
+//   })
+
+// //=================================
+
+// document
+//   .querySelector('.form__button')
+//   .addEventListener('click', (e) => {
+//     // e.preventDefault()
+
+//     alert(e.defaultPrevented)
+//   })
+
+// //=================================
+
+// document
+//   .querySelector('.form__button')
+//   .addEventListener('click', (e) => {
+//     e.preventDefault()
+
+//     console.log(e.target)
+//     console.log(e.currentTarget)
+//   })
+
+//=================================
+
+// document
+//   .querySelector('.form__button')
+//   .addEventListener('click', (e) => {
+//     e.preventDefault()
+
+//     console.log(e.composedPath())
+//   })
+
+// // //==================
+
+// const outer = document.getElementById('outer')
+// const inner = document.getElementById('inner')
+
+// outer.addEventListener(
+//   'click',
+//   () => alert('capture phase (фаза захоплення) outer'),
+//   {
+//     capture: true,
+//   },
+// )
+
+// inner.addEventListener(
+//   'click',
+//   (e) => {
+//     e.stopImmediatePropagation()
+//     alert('Capture phase (фаз захоплення) inner')
+//   },
+//   {
+//     capture: true,
+//   },
+// )
+
+// inner.addEventListener(
+//   'click',
+//   (e) => {
+//     alert('Capture phase (фаз захоплення) inner 2')
+//   },
+//   {
+//     capture: true,
+//   },
+// )
+
+// outer.addEventListener(
+//   'click',
+//   () => alert('Bubble phase (фаза спливання) outer'),
+//   {
+//     capture: false,
+//   },
+// )
+
+// inner.addEventListener(
+//   'click',
+//   () => alert('Bubble phase (фаза спливання) inner'),
+//   {
+//     capture: false,
+//     once: true,
+//   },
+// )
+
+//==================
+
+// const outer = document.getElementById('outer')
+// const inner = document.getElementById('inner')
+
+// outer.addEventListener(
+//   'click',
+//   () => alert('capture phase (фаза захоплення) outer'),
+//   {
+//     capture: true,
+//   },
+// )
+
+// inner.addEventListener(
+//   'click',
+//   (e) => {
+//     e.stopPropagation()
+//     alert('Capture phase (фаз захоплення) inner')
+//   },
+//   {
+//     capture: true,
+//   },
+// )
+
+// inner.addEventListener(
+//   'click',
+//   (e) => {
+//     alert('Capture phase (фаз захоплення) inner 2')
+//   },
+//   {
+//     capture: true,
+//   },
+// )
+
+// outer.addEventListener(
+//   'click',
+//   () => alert('Bubble phase (фаза спливання) outer'),
+//   {
+//     capture: false,
+//   },
+// )
+
+// inner.addEventListener(
+//   'click',
+//   () => alert('Bubble phase (фаза спливання) inner'),
+//   {
+//     capture: false,
+//     once: true,
+//   },
+// )
+
+//==================
+
+const button = document.querySelector('.form__button')
+
+const myEvent = new CustomEvent('myevent', {
+  detail: { id: 100 },
+})
+
+button.addEventListener('myevent', (e) => {
+  alert(e.detail.id)
+  // console.log(e)
+})
+
+button.dispatchEvent(myEvent)
